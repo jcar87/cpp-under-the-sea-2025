@@ -1,0 +1,12 @@
+[requires]
+cuda-toolkit/12.8.1
+
+[tool_requires]
+cuda-toolkit/<host_version>
+
+[layout]
+cmake_layout
+
+[generators]
+CMakeToolchain
+CMakeDeps

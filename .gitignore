@@ -1,0 +1,6 @@
+venv/
+build/
+conan_home/
+*conanbuild*.sh
+*conanrun*.sh
+CMakeUserPresets.json
