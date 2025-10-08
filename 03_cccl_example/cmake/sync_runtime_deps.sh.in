@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Copy .so libraries from conan cache
+rsync -avR \
+    --quiet \
+    --prune-empty-dirs \
+    --include="*/" \
+    --include="*.so*" \
+    --exclude="*" \
+    @RUNTIME_LIB_DIRS@
+    @REMOTE_HOST@:@REMOTE_WORKING_DIR@/conan-deps
+
+# Copy .so libraries from current build directory
+rsync -avr \
+    --quiet \
+    --prune-empty-dirs \
+    --include="*/" \
+    --include="*.so*" \
+    --exclude="*" \
+    @CMAKE_BINARY_DIR@/ \
+    @REMOTE_HOST@:@REMOTE_WORKING_DIR@/build/

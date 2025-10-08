@@ -1,0 +1,16 @@
+[requires]
+cuda-toolkit/12.2.0
+fmt/[*]
+
+[tool_requires]
+cuda-toolkit/<host_version>
+
+[options]
+fmt/*:shared=True
+
+[layout]
+cmake_layout
+
+[generators]
+CMakeToolchain
+CMakeDeps

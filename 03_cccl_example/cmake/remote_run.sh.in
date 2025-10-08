@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+remote_workdir=@REMOTE_WORKING_DIR@/build
+executable_basename=$(basename $1)
+executable_dirname=$(dirname $1)
+executable_relpath=$(realpath --relative-to=@CMAKE_BINARY_DIR@ $executable_dirname)
+
+remote_executable=$remote_workdir/$executable_relpath/$executable_basename
+
+ssh @REMOTE_HOST@ 'mkdir -p ${remote_workdir}/${executable_relpath}'
+
+cat $1 | ssh @REMOTE_HOST@ "cat >  ${remote_executable} ; chmod +x ${remote_executable}; LD_LIBRARY_PATH=@REMOTE_LD_LIBRARY_PATH@ ${remote_executable} ${@:2}"
