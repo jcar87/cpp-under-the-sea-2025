@@ -1,4 +1,11 @@
 
+
+# Note: replace these with the values relevant to your setup
+# REMOTE_HOST: an SSH hostname (or IP address) to ssh into. Note that the 
+#             user must have passwordless SSH access (e.g., via SSH keys).
+# REMOTE_WORKING_DIR: a working directory on the remote host where build
+#                     and test files will be synced to.
+
 set(REMOTE_HOST jetson)
 set(REMOTE_WORKING_DIR "/home/julius/dev/remote-dev/tmp")
 
@@ -6,13 +13,18 @@ set(REMOTE_WORKING_DIR "/home/julius/dev/remote-dev/tmp")
 # Note: assuming that CONAN_RUNTIME_LIB_DIRS contains paths to libraries in the conan cache
 #       and was set in conan_toolchain.cmake
 
+execute_process(
+  COMMAND conan config home
+  OUTPUT_VARIABLE CONAN_HOME
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
 set(RUNTIME_LIB_DIRS "")
 set(REMOTE_LD_LIBRARY_PATH "")
 foreach(LIBDIR ${CONAN_RUNTIME_LIB_DIRS})
   string(REPLACE "/p/" "/./p/" LIBDIR "${LIBDIR}")
   string(APPEND RUNTIME_LIB_DIRS "    ${LIBDIR} \\\n")
-  # message("LIBDIR: ${LIBDIR}")
-  string(REPLACE "/home/luisc/cpp-under-the-sea-2025/conan_home/" "${REMOTE_WORKING_DIR}/conan-deps/" LIBPATH_ENTRY "${LIBDIR}")
+  string(REPLACE "${CONAN_HOME}/" "${REMOTE_WORKING_DIR}/conan-deps/" LIBPATH_ENTRY "${LIBDIR}")
   list(APPEND REMOTE_LD_LIBRARY_PATH ${LIBPATH_ENTRY})
 endforeach()
 

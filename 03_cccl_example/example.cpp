@@ -29,6 +29,7 @@ int main()
 
   const auto result = thrust::reduce(data.cbegin(), data.cend());
   fmt::print("Sum: {}\n", result);
+  fmt::print("Hello C++ Under the Sea from Breda!\n");
 
   if (result != N)
   {

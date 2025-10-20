@@ -19,9 +19,9 @@ project(CCCLDemo CUDA CXX)
 
 set(CMAKE_BUILD_RPATH_USE_ORIGIN ON)
 
-# if (CMAKE_CROSSCOMPILING)
-#   include(cmake/cross_test.cmake)
-# endif()
+if (CMAKE_CROSSCOMPILING)
+  include(cmake/cross_test.cmake)
+endif()
 
 
 find_package(CUDAToolkit REQUIRED)
