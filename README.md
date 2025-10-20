@@ -1,7 +1,20 @@
 ### CUDA and C++ Development with Conan and CMake – Build on Windows, Linux (and Jetson!)  - C++ Under the Sea 2025
 
-[code and slides will be published here]
+Slides [here](https://github.com/jcar87/cpp-under-the-sea-2025/releases/download/breda-2025/CUDA-cpp-Development-Conan-CMake.pdf)
 
+## License
+
+- `01_llama-cpp`:
+ The recipe is adapted from [Conan Center Index](https://github.com/conan-io/conan-center-index) - see [MIT License](https://github.com/conan-io/conan-center-index?tab=MIT-1-ov-file#readme)
+- `02_vector-add`:
+  Adapted from [cuda-samples](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/0_Introduction/vectorAdd). Please see the individual files which retain the Apache-2.0 license.
+- `03_cccl_example`:
+  Adapted from [cccl](https://github.com/NVIDIA/cccl/tree/main/examples/thrust_flexible_device_system) and [cuda-samples](https://github.com/NVIDIA/cuda-samples/) - Please see individual files which retain the Apache-2.0 license.
+- Recipes in `recipes` subfolder:
+  See the LICENSE file in this repository. The license covers **only** the recipes, not the contents of the packages.
+  
+  Note: the recipes download CUDA Toolkit and Jetson GCC toolchain directly from NVIDIA. Usage is governed by NVIDIA terms of service. Please see CUDA Toolkit End User License Agreement before proceeding.
+- Where otherwise not stated (in the file itself), the license from this repository applies.
 ## Demo 1:
 
 (Tested on Linux)
