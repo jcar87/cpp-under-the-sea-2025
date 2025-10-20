@@ -39,3 +39,33 @@ llama-cli \
   --hf-file Llama-3.2-1B-Instruct-Q6_K.gguf \
   -p "How do you install CUDA on Linux for C++ development?\n"
 ```
+
+## Demo 2:
+
+Adapted from: https://github.com/NVIDIA/cuda-samples/tree/master/Samples/0_Introduction/vectorAdd 
+
+On Linux:
+```
+conan export recipes/cuda-toolkit/12.8.1 --build=missing
+
+cd 02_vector-add
+conan install . 
+cmake --preset conan-release
+cmake --build --preset conan-release
+./build/Release/vectorAdd
+```
+
+On Windows:
+
+From a Visual C++ command prompt:
+
+```
+conan export recipes/cuda-toolkit/12.8.1
+
+cd 02_vector-add
+conan install . -c tools.cmake.cmaketoolchain:generator=Ninja --build=missing
+cmake --preset conan-release
+cmake --build --preset conan-release
+cd build/Release
+vectorAdd
+```
